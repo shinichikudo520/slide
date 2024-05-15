@@ -152,6 +152,16 @@ export default function Slide(props: PROPS): React.ReactElement {
   useEffect((): void => {
     /** 在组件挂载完成后, 更新组件内部的一些必要参数 */
     updateDomParams();
+
+    window.addEventListener(
+      "resize",
+      () => {
+        /** 在窗口变化话, 需要重新更新组件内部的必要参数, 并且更新滚动条 */
+        updateDomParams();
+        updateView(slideControlRef.current.current);
+      },
+      false
+    );
   }, []);
 
   return (
